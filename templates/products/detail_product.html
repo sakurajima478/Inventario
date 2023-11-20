@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block navbar %}
+
+{% include 'components/navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="container detail"> 
+    <h1>{{ product.name }}</h1>
+    <p><strong>Stock:</strong> {{ product.stock }}</p>
+    <p><strong>Price:</strong> {{ product.price|intcomma }}</p>
+    <p><strong>Created:</strong> {{ product.created }}</p>
+    <p><strong>User:</strong> {{ product.user.username }}</p>
+
+    <div class="button-detail">
+    <a href="{% url 'products:update_product' product.id %}"><button class="update">update</button></a>
+    <a href="{% url 'products:delete_product' product.id %}"><button class="delete">delete</button></a>
+    </div>
+</div>
+
+
+{% endblock content %}
+

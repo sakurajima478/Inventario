@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+{% include 'components/navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="container-home">
+<header class="header-home">
+    <h1>Manage your inventory with our web app</h1>
+    <p>A simple and effective solution to track your stock</p>
+  </header>
+  <main>
+    <section class="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Track your products and supplies</li>
+        <li>Place orders and track your stock</li>
+        <li>Generate custom reports</li>
+      </ul>
+    </section>
+    <section class="call-to-action">
+      <h2>Try it today</h2>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'categories:categories' %}"><button>Free trial</button></a>
+      {% else %}
+        <a href="{% url 'login' %}"><button>Free trial</button></a>
+      {% endif %}
+    </section>
+  </main>
+</div>
+
+{% endblock content %}

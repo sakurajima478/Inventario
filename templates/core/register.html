@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+    <h4>Register</h4>
+
+    {% include 'components/error.html' %}
+
+    <form action="" class="form-group" method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="form-container">
+    <h4>Login</h4>
+
+    
+    {% include 'components/error.html' %}
+
+    <form action="" class="form-group" method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">Login</button>
+    </form>
+
+</div>
+
+{% endblock content %}

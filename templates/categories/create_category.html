@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+{% include 'components/navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="form-container">
+    <h4>Create Category</h4>
+
+    {{ error }}
+
+    <form action="" class="form-group" method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">create</button>
+    </form>
+
+</div>
+
+{% endblock content %}
