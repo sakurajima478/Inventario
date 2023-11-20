@@ -9,8 +9,12 @@
 
 {% block content %}
 
+{% include "components/messages.html" %}
+
+
 <div class="container">
     <h1>Products</h1>
+
     <a href="{% url 'products:create_product' %}"><button class="create">Create Product</button></a>
 
     {% if products.exists %}

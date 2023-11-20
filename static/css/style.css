@@ -495,8 +495,8 @@ alert
     transform: translate(-50%, -50%);
     width: 300px;
     padding: 30px;
-    background-color: #cf4e45;
-    color: #fff;
+    background-color: #dbdbdb;
+    color: #1b3039;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
@@ -505,17 +505,19 @@ alert
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .alert-message {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .alert-button {
-    background-color: #ffffff;
-    color: #333;
+    background-color: #37ac2c;
+    color: #e7e3e3;
     margin-top: 10px;
     padding: 10px;
     border: none;

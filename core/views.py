@@ -3,9 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.core.mail import EmailMessage
-from  django.conf import settings
-from django.core.mail import send_mail
+from django.contrib import messages
 
 from .forms import UserRegisterForm, ContactForm
 
@@ -27,15 +25,17 @@ def register_view(request):
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
+                messages.success(request, 'User Register Sucessfully')
                 return redirect('home')
             except IntegrityError:
+                messages.warning(request, 'User already exists')
                 return render(request, 'core/register.html', {
                     'form' : UserRegisterForm,
-                    'error': 'Username already exists',
                 })
+                
+        messages.warning(request, 'Password do not match')
         return render(request, 'core/register.html', {
             'form' : UserRegisterForm,
-            'error': 'Password do not match',
         })
 
 def login_view(request):
@@ -46,9 +46,9 @@ def login_view(request):
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
+            messages.warning(request, 'Username or Password is incorrect')
             return render(request, 'core/login.html', {
                 'form' : AuthenticationForm,
-                'error' : 'Username or Password is incorrect',
             })
         else:
             login(request, user)

@@ -11,7 +11,7 @@
 <div class="form-container product">
     <h4>Update Product</h4>
 
-    {{ error }}
+    {% include "components/messages.html" %}
 
     <form action="" class="form-group" method="POST">
         {% csrf_token %}

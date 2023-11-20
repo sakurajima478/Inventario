@@ -11,7 +11,7 @@
 <div class="form-container">
     <h4>Create Category</h4>
 
-    {{ error }}
+    {% include 'components/messages.html' %}
 
     <form action="" class="form-group" method="POST">
         {% csrf_token %}
