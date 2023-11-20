@@ -47,7 +47,7 @@ def update_category_view(request, pk):
             form.save()
             return redirect('categories:categories')
         except ValueError:
-            return render(request, 'categories/update_categories.html', {
+            return render(request, 'categories/update_category.html', {
                 'form' : form,
                 'error' : 'Error updating category',
             })
