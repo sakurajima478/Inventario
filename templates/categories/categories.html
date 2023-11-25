@@ -20,7 +20,7 @@
         <div class="grid">
             {% for category in categories %}
             <div class="card">
-            <h2>{{ category.name }}</h2>
+            <h2><a href="{% url 'categories:products_category' category.id %}">{{ category.name }}</a></h2>
                 <p>{{ category.user.username }}</p>
                 <p> {{ category.created|date }}</p>
                 <a href="{% url 'categories:update_category' category.id %}"><button class="update">update</button></a>

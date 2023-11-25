@@ -13,7 +13,7 @@
 
 
 <div class="container">
-    <h1>Products</h1>
+    <h1>Products in  {{ category.name }}</h1>
 
     <a href="{% url 'products:create_product' %}"><button class="create">Create Product</button></a>
 
@@ -24,14 +24,13 @@
             <h2>
                 <a href="{% url 'products:detail_product' product.id %}">{{ product.name }}</a>
             </h2>
-                <p>{{ product.category }}</p>
                 <a href="{% url 'products:update_product' product.id %}"><button class="update">update</button></a>
                 <a href="{% url 'products:delete_product' product.id %}"><button class="delete">delete</button></a>
             </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>You have not created products yet</p>
+        <p>You have not created products in this category</p>
         <img src="{% static 'patito.gif' %}" alt="">
     {% endif %}
 </div>
