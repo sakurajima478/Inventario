@@ -15,6 +15,7 @@ def categories_view(request):
         'categories' : categories,
     })
 
+@login_required
 def products_category_view(request, pk):
     category = get_object_or_404(CategoryModel, pk=pk, user=request.user)
     products_category = ProductModel.objects.filter(user=request.user, category=pk)
