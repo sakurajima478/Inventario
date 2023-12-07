@@ -11,8 +11,17 @@ from .forms import CategoryForm
 @login_required
 def categories_view(request):
     categories = CategoryModel.objects.filter(user=request.user)
+    
+    category_totals = {} 
+
+    for category in categories:
+        products = ProductModel.objects.filter(user=request.user, category=category.pk)
+        total = sum(product.price * product.stock for product in products)
+        category_totals[category.name] = total
+
     return render(request, 'categories/categories.html', {
-        'categories' : categories,
+        'categories': categories,
+        'category_totals': category_totals,
     })
 
 @login_required

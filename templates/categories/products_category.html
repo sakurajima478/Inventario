@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block navbar %}
 
@@ -24,6 +25,7 @@
             <h2>
                 <a href="{% url 'products:detail_product' product.id %}">{{ product.name }}</a>
             </h2>
+            <p><strong>Total:</strong> {{ product.total_display|intcomma }}</p>
                 <a href="{% url 'products:update_product' product.id %}"><button class="update">update</button></a>
                 <a href="{% url 'products:delete_product' product.id %}"><button class="delete">delete</button></a>
             </div>

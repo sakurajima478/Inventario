@@ -19,3 +19,5 @@ class ProductModel(models.Model):
     def __str__(self):
         return f'{self.name} : {self.user.username}'
     
+    def total_display(self):
+        return f"{self.price * self.stock}"

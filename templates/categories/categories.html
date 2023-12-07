@@ -1,37 +1,40 @@
+<!-- categories.html -->
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block navbar %}
-
-{% include 'components/navbar.html' %}
-
+    {% include 'components/navbar.html' %}
 {% endblock navbar %}
 
 {% block content %}
+    {% include 'components/messages.html' %}
 
-{% include 'components/messages.html' %}
+    <div class="container">
+        <h1>Categories</h1>
 
-<div class="container">
-    <h1>Categories</h1>
+        <a href="{% url 'categories:create_category' %}"><button class="create">Create Category</button></a>
 
-    <a href="{% url 'categories:create_category' %}"><button class="create">Create Category</button></a>
-
-    {% if categories.exists %}
-        <div class="grid">
-            {% for category in categories %}
-            <div class="card">
-            <h2><a href="{% url 'categories:products_category' category.id %}">{{ category.name }}</a></h2>
-                <p>{{ category.user.username }}</p>
-                <p> {{ category.created|date }}</p>
-                <a href="{% url 'categories:update_category' category.id %}"><button class="update">update</button></a>
-                <a href="{% url 'categories:delete_category' category.id %}"><button class="delete">delete</button></a>
+        {% if categories.exists %}
+            <div class="grid">
+                {% for category in categories %}
+                    <div class="card">
+                        <h2><a href="{% url 'categories:products_category' category.id %}">{{ category.name }}</a></h2>
+                        
+                        {% for name, total in category_totals.items %}
+                            {% if category.name == name %}
+                            <p>Total: {{ total|intcomma }}</p>
+                            {% endif %}
+                        {% endfor %}
+                
+                        <a href="{% url 'categories:update_category' category.id %}"><button class="update">Update</button></a>
+                        <a href="{% url 'categories:delete_category' category.id %}"><button class="delete">Delete</button></a>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>You have not created categories yet</p>
-        <img src="{% static 'patito.gif' %}" alt="">
-    {% endif %}
-</div>
-
+        {% else %}
+            <p>You have not created categories yet</p>
+            <img src="{% static 'patito.gif' %}" alt="">
+        {% endif %}
+    </div>
 {% endblock content %}
